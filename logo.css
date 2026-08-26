@@ -1,0 +1,252 @@
+/* ============================================================
+   ESNAA LOGO — cinematic intro that transitions into the navbar
+   One mark, one instance: it plays its construction animation
+   large and centered, then physically shrinks and travels into
+   the navbar corner (reparented via a FLIP transform so there is
+   no cut/jump), where it becomes a compact logo button that
+   reveals the wordmark on hover. RTL is mirrored by the browser's
+   native flex/logical-property direction handling, not hardcoded
+   coordinates.
+   ============================================================ */
+
+:root{
+  --gold-light:#f7e4bc;
+  --gold-mid:#d4a74e;
+  --gold-dark:#7a5314;
+  --esnaa-transition-ease:cubic-bezier(.65,0,.35,1);
+}
+
+/* ---------- full-screen intro backdrop ---------- */
+.esnaa-intro-backdrop{
+  position:fixed; inset:0; z-index:1900;
+  background:radial-gradient(circle at 50% 38%, var(--paper-alt,#fff) 0%, var(--paper) 62%, var(--paper) 100%);
+  opacity:1;
+  transition:opacity .8s ease;
+}
+.esnaa-intro-backdrop[hidden]{ display:none; }
+
+html.esnaa-intro-lock,
+html.esnaa-intro-lock body{ overflow:hidden; }
+
+/* ---------- intro stage: big, centered, sits above everything ---------- */
+.esnaa-logo-stage{
+  position:fixed; z-index:2001; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  display:flex; flex-direction:column; align-items:center;
+  gap:clamp(26px,4vw,52px);
+  pointer-events:none;
+}
+.esnaa-logo-stage[hidden]{ display:none; }
+.esnaa-logo-stage__row{
+  display:flex; align-items:center;
+  gap:clamp(18px,3vw,40px);
+}
+
+/* the mark is big only while it lives inside the intro stage —
+   once JS moves it into the navbar slot this rule no longer
+   matches and it falls back to its small, permanent size below */
+.esnaa-logo-stage .esnaa-logo__mark{
+  width:clamp(210px,30vw,420px);
+  filter:drop-shadow(0 35px 60px rgba(8,16,28,.28)) drop-shadow(0 10px 15px rgba(8,16,28,.12));
+}
+
+.esnaa-intro-word{
+  opacity:0;
+  transition:opacity .55s ease;
+}
+.esnaa-intro-word.is-visible{ opacity:1; }
+.esnaa-intro-word svg{
+  display:block;
+  width:clamp(190px,26vw,320px);
+  height:auto;
+  filter:drop-shadow(0 3px 6px rgba(6,12,22,.25)) drop-shadow(0 -1px 0px rgba(255,255,255,.5));
+}
+
+.esnaa-intro-tagline{
+  opacity:0;
+  transition:opacity .5s ease;
+  display:flex; align-items:center; gap:20px; white-space:nowrap;
+  font-family:Montserrat,'Century Gothic',Arial,sans-serif;
+  font-size:13px; font-weight:500; letter-spacing:.28em;
+  text-transform:uppercase; color:var(--ink);
+}
+.esnaa-intro-tagline.is-visible{ opacity:1; }
+.esnaa-intro-tagline__line{
+  width:36px; height:1px;
+  background:linear-gradient(90deg,var(--gold-mid),#f0d49f);
+}
+
+/* ---------- hero wordmark: reuses the exact ESNAA wordmark artwork
+   (same path data as the intro/navbar wordmark) instead of live HTML
+   text. Sized off the .hero-mark font-size (base.css) so it keeps the
+   same responsive clamp(...vw...) scaling the text used to get from
+   its line-height:1 box, and colored with currentColor so it keeps
+   inheriting the color/opacity rules already set on .hero-mark in
+   base.css / halo.css / theme.css instead of a fixed brand color. ---------- */
+.hero-mark svg{
+  display:block;
+  height:.78em;
+  width:auto;
+  overflow:visible;
+}
+
+/* ---------- the permanent logo instance: lives in the navbar ---------- */
+#nav a.nav-logo{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  width:48px; height:48px;
+  flex:none;
+}
+
+.esnaa-logo__mark-box{
+  position:relative; z-index:2;
+  display:flex; align-items:center;
+  width:100%; height:100%;
+}
+
+.esnaa-logo__mark{
+  display:block;
+  width:48px;
+  height:auto;
+  transform-origin:top left;
+  will-change:transform;
+}
+
+/* ---------- hover-expand wordmark (navbar state only) ---------- */
+.esnaa-logo__word-box{
+  position:absolute; top:50%;
+  inset-inline-start:100%;
+  transform:translateY(-50%);
+  display:flex; align-items:center;
+  max-width:0; opacity:0; overflow:hidden;
+  margin-inline-start:0;
+  pointer-events:none;
+  transition:max-width .5s var(--esnaa-transition-ease),
+             opacity .35s ease,
+             margin-inline-start .5s var(--esnaa-transition-ease);
+}
+.esnaa-logo__word{
+  display:block;
+  width:128px;
+  height:auto;
+  flex:none;
+}
+
+#nav a.nav-logo[data-state="navbar"]:hover .esnaa-logo__word-box,
+#nav a.nav-logo[data-state="navbar"]:focus-visible .esnaa-logo__word-box{
+  max-width:150px;
+  opacity:1;
+  margin-inline-start:10px;
+}
+
+/* ============================================================
+   PYRAMID CONSTRUCTION ANIMATION
+   (preserved from the original ESNAA logo animation, unchanged)
+   ============================================================ */
+.esnaa-logo__mark .ink{ fill:var(--ink,#0b172a); }
+.esnaa-logo__mark .ink-soft{ fill:var(--ink-soft,#17263d); }
+.esnaa-logo__mark .gold{ fill:url(#luxury-gold); }
+.esnaa-logo__mark .gold-light{ fill:var(--gold-light,#f7e4bc); }
+
+.esnaa-logo__mark .ring-line{ fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.esnaa-logo__mark .gold-ring{ stroke:url(#luxury-gold); }
+.esnaa-logo__mark .gold-ring-light{ stroke:var(--gold-light,#f7e4bc); }
+.esnaa-logo__mark .technical-line{ stroke:var(--ink,#0b172a); stroke-width:2.35; filter:drop-shadow(0 1px 1.5px rgba(255,255,255,0.6)); }
+.esnaa-logo__mark .technical-line-light{ stroke:#36455b; stroke-width:.78; opacity:.7; }
+
+.esnaa-logo__mark .pyramids{
+  opacity:0; transform:translateY(26px);
+  animation:esnaa-pyramid-build .82s .08s cubic-bezier(.22,.82,.3,1) forwards;
+}
+.esnaa-logo__mark .pyramid-highlight{
+  opacity:0;
+  animation:esnaa-highlight-arrive .5s .49s ease-out forwards,
+    esnaa-highlight-shimmer 7s 4.3s ease-in-out infinite;
+}
+.esnaa-logo__mark .pyramid-edge{
+  fill:none; stroke:var(--gold-light,#f7e4bc); stroke-width:1.25;
+  stroke-linecap:round; stroke-dasharray:1; stroke-dashoffset:1; opacity:0;
+  animation:esnaa-draw-line .52s .52s ease-out forwards,
+    esnaa-edge-shimmer 7s 4.1s ease-in-out infinite;
+}
+.esnaa-logo__mark .sand-layer{
+  opacity:0; transform-box:fill-box; transform-origin:center;
+  animation:esnaa-sand-settle .62s var(--delay) cubic-bezier(.25,.8,.34,1) forwards;
+}
+.esnaa-logo__mark .branching-lines .draw-path,
+.esnaa-logo__mark .outer-ring .draw-path,
+.esnaa-logo__mark .inner-ring .draw-path{
+  stroke-dasharray:1; stroke-dashoffset:1;
+  animation:esnaa-draw-line var(--duration,.52s) var(--delay) cubic-bezier(.24,.74,.28,1) forwards;
+}
+.esnaa-logo__mark .nodes .node-wrap{
+  opacity:0; transform-box:fill-box; transform-origin:center;
+  animation:esnaa-node-arrive .24s var(--delay) cubic-bezier(.18,.86,.32,1) forwards;
+}
+.esnaa-logo__mark .nodes .node-dot{ transform-box:fill-box; transform-origin:center; }
+.esnaa-logo__mark .node-light{
+  opacity:0; transform-box:fill-box; transform-origin:center;
+  animation:esnaa-node-flicker var(--flicker-duration,5s) var(--flicker-delay,3s) infinite backwards;
+}
+.esnaa-logo__mark .outer-ring{ transform-origin:195.5px 186.5px; }
+.esnaa-logo__mark .outer-sweep{
+  fill:none; stroke:#ffffff; stroke-linecap:round;
+  stroke-dasharray:.17 .83; stroke-dashoffset:1; opacity:.95;
+  filter:drop-shadow(0 0 7px rgba(255,255,255,.9));
+  animation:esnaa-outer-reload 6s 3.55s linear infinite;
+}
+.esnaa-logo__mark .inner-ring{
+  transform-origin:195.5px 166px;
+  animation:esnaa-inner-steer 8.8s 3.2s cubic-bezier(.44,.03,.56,.98) infinite;
+}
+
+@keyframes esnaa-pyramid-build{ from{ opacity:0; transform:translateY(26px); } to{ opacity:1; transform:translateY(0); } }
+@keyframes esnaa-sand-settle{ from{ opacity:0; transform:translateY(7px) scaleX(.34); } to{ opacity:1; transform:translateY(0) scaleX(1); } }
+@keyframes esnaa-highlight-arrive{ from{ opacity:0; } to{ opacity:1; } }
+@keyframes esnaa-draw-line{ to{ stroke-dashoffset:0; } }
+@keyframes esnaa-node-arrive{ from{ opacity:0; transform:scale(.38); } to{ opacity:1; transform:scale(1); } }
+@keyframes esnaa-outer-reload{ from{ stroke-dashoffset:1; } to{ stroke-dashoffset:0; } }
+@keyframes esnaa-inner-steer{
+  0%,100%{ transform:rotate(-1.85deg); }
+  7%{ transform:rotate(-2.08deg); }
+  27%{ transform:rotate(-.06deg); }
+  49%{ transform:rotate(1.76deg); }
+  57%{ transform:rotate(2.02deg); }
+  77%{ transform:rotate(.08deg); }
+}
+@keyframes esnaa-highlight-shimmer{ 0%,76%,100%{ opacity:1; } 82%{ opacity:.69; } 88%{ opacity:1; } }
+@keyframes esnaa-edge-shimmer{ 0%,71%,100%{ opacity:0; stroke-dashoffset:1; } 78%{ opacity:.72; stroke-dashoffset:.22; } 84%{ opacity:0; stroke-dashoffset:0; } }
+@keyframes esnaa-node-flicker{
+  0%{ opacity:0; filter:drop-shadow(0 0 0px #fff); }
+  1%{ opacity:1; filter:drop-shadow(0 0 12px #fff); }
+  2%{ opacity:0; }
+  3%{ opacity:1; filter:drop-shadow(0 0 10px #fff); }
+  4%{ opacity:.2; }
+  8%{ opacity:.9; filter:drop-shadow(0 0 8px #fff); }
+  9%{ opacity:0; }
+  12%{ opacity:1; filter:drop-shadow(0 0 12px #fff); }
+  13%{ opacity:.1; }
+  15%{ opacity:1; filter:drop-shadow(0 0 10px #fff); }
+  18%{ opacity:.8; filter:drop-shadow(0 0 6px #fff); }
+  19%{ opacity:.3; }
+  25%{ opacity:1; filter:drop-shadow(0 0 10px #fff); }
+  45%{ opacity:1; filter:drop-shadow(0 0 10px #fff); }
+  46%{ opacity:0; }
+  47%{ opacity:.9; filter:drop-shadow(0 0 8px #fff); }
+  48%{ opacity:.1; }
+  50%{ opacity:1; filter:drop-shadow(0 0 12px #fff); }
+  85%{ opacity:1; filter:drop-shadow(0 0 10px #fff); }
+  86%{ opacity:.2; }
+  87%{ opacity:1; filter:drop-shadow(0 0 8px #fff); }
+  95%{ opacity:1; filter:drop-shadow(0 0 10px #fff); }
+  96%{ opacity:0; }
+  100%{ opacity:0; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .esnaa-intro-backdrop,
+  .esnaa-logo-stage{ display:none !important; }
+  .esnaa-logo__mark{ transition:none !important; transform:none !important; }
+  .esnaa-logo__mark *{ animation:none !important; opacity:1 !important; transform:none !important; stroke-dashoffset:0 !important; }
+}

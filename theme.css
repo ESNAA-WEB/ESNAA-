@@ -1,0 +1,62 @@
+/* =========================================
+   1. CSS RESET & BASE
+   ========================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; 
+}
+
+/* =========================================
+   2. DESIGN TOKENS (Light Mode Default)
+   ========================================= */
+:root {
+    /* Colors */
+    --paper: #F6F4EF; /* Matched to your meta theme-color! */
+    --ink: #171717; 
+    --accent: #2563EB; 
+    --surface: #FFFFFF; 
+    
+    /* Typography */
+    /* Hooked up to the fonts from your HTML <head> */
+    --font-main: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+    --font-heading: 'El Messiri', system-ui, sans-serif;
+    --font-accent: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
+    
+    /* Utilities */
+    --transition-speed: 0.3s;
+    --border-radius: 12px;
+}
+
+/* =========================================
+   3. DARK MODE OVERRIDES
+   ========================================= */
+html[data-theme="dark"] {
+    --paper: #121212; 
+    --ink: #F3F4F6; 
+    --accent: #3B82F6; 
+    --surface: #1E1E1E; 
+}
+
+/* =========================================
+   4. GLOBAL APPLICATION
+   ========================================= */
+body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    /* Smooth fade when toggling themes */
+    transition: background-color var(--transition-speed) ease, 
+                color var(--transition-speed) ease; 
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}

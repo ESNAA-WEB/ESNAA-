@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F6F4EF">
+  <meta name="description" content="Esnaa بتصمم وتبني مواقع مودرن للبيزنسات المحلية والمشاريع الناشئة.">
+  <title>Esnaa — مواقع احترافية للبيزنسات المحلية</title>
+  <!-- connect-src: 'self' covers the production /api reverse-proxy path (see js/api-config.js).
+       http://localhost:5000 is only needed for local development and can be removed once the
+       backend is only ever reached via the same-origin /api proxy. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' http://localhost:5000; form-action 'self' https://api.web3forms.com; frame-src 'self'; media-src 'self' data: blob:; upgrade-insecure-requests">
+  <script src="js/bootstrap.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css?v=5">
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <a href="#top" class="nav-logo" id="esnaaLogo" aria-label="Esnaa - الصفحة الرئيسية" data-state="intro">
+      <span class="esnaa-logo__mark-box" id="esnaaMarkSlot"></span>
+      <span class="esnaa-logo__word-box">
+        <svg class="esnaa-logo__word" viewBox="-4 -4 208 48" role="img" aria-hidden="true">
+          <title>ESNAA</title>
+          <g fill="none" stroke-width="4.5" stroke-linejoin="miter" stroke-linecap="butt">
+            <path d="M 0 0 L 25 0 M 0 20 L 15 20 M 0 40 L 50 40 A 10 10 0 0 0 50 20 A 10 10 0 0 1 50 0 L 65 0" stroke="#1d2e4a" />
+            <path d="M 80 40 L 80 0 L 110 40 L 110 0" stroke="url(#luxury-gold)" />
+            <path d="M 125 40 L 140 0 L 155 40" stroke="url(#luxury-gold)" />
+            <path d="M 170 40 L 185 0 L 200 40" stroke="url(#luxury-gold)" />
+          </g>
+        </svg>
+      </span>
+    </a>
+    <div class="nav-links-wrap">
+      <ul class="nav-links">
+        <li><a href="#work">الشغل</a></li>
+        <li><a href="#services">الخدمات</a></li>
+        <li><a href="#process">إزاي بنشتغل</a></li>
+        <li><a href="#faq-section">اسأل Esnaa</a></li>
+        <li><a href="#contact">تواصل معنا</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="فعّل الوضع الداكن" aria-pressed="false">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+      </button>
+      <button class="language-toggle" id="languageToggle" type="button" aria-label="غيّر اللغة">ع</button>
+      <a href="#contact" class="btn btn-primary nav-cta">ابدأ مشروعك</a>
+      <button class="hamburger" id="hamburger" type="button" aria-label="افتح القائمة" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="esnaa-intro-backdrop" id="esnaaBackdrop" aria-hidden="true"></div>
+
+  <div class="esnaa-logo-stage" id="esnaaLogoStage" aria-hidden="true">
+    <div class="esnaa-logo-stage__row">
+      <svg class="esnaa-logo__mark" id="esnaaMark" viewBox="55 45 285 280" role="img">
+        <title>ESNAA</title>
+        <defs>
+          <linearGradient id="luxury-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#faedcd" />
+            <stop offset="22%" stop-color="#e8cca1" />
+            <stop offset="48%" stop-color="#c29742" />
+            <stop offset="75%" stop-color="#8c6219" />
+            <stop offset="100%" stop-color="#f0d49f" />
+          </linearGradient>
+          <filter id="studio-emboss" x="-25%" y="-25%" width="150%" height="150%">
+            <feDropShadow dx="0" dy="1.4" stdDeviation="0.9" flood-color="#ffffff" flood-opacity="0.72" result="highlight" />
+            <feDropShadow dx="0" dy="3.2" stdDeviation="2.8" flood-color="#040810" flood-opacity="0.42" result="shadow" />
+          </filter>
+          <radialGradient id="node-halo" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+            <stop offset="28%" stop-color="#ffffff" stop-opacity=".9" />
+            <stop offset="66%" stop-color="#ffffff" stop-opacity=".3" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+
+        <g id="outerRing" class="outer-ring" aria-hidden="true" filter="url(#studio-emboss)">
+          <path class="ring-line gold-ring draw-path" pathLength="1" style="--delay:1.47s; --duration:1.02s" d="M 83 241 A 125 125 0 1 1 308 241" stroke-width="2.65" />
+          <path class="ring-line gold-ring-light draw-path" pathLength="1" style="--delay:1.55s; --duration:1.01s" d="M 85 240 A 123 123 0 1 1 306 240" stroke-width=".78" opacity=".9" />
+          <path class="outer-sweep" pathLength="1" d="M 84 240.5 A 124 124 0 1 1 307 240.5" stroke-width="3.6" />
+        </g>
+
+        <g id="innerRing" class="inner-ring" aria-hidden="true" filter="url(#studio-emboss)">
+          <path class="ring-line gold-ring draw-path" pathLength="1" style="--delay:2.02s; --duration:.72s" d="M 116 216 A 91 91 0 0 1 136 107" stroke-width="2.4" />
+          <path class="ring-line gold-ring draw-path" pathLength="1" style="--delay:2.16s; --duration:.72s" d="M 275 216 A 91 91 0 0 0 245 107" stroke-width="2.4" />
+          <path class="ring-line gold-ring-light draw-path" pathLength="1" style="--delay:2.06s; --duration:.72s" d="M 118 216 A 89 89 0 0 1 137 109" stroke-width=".72" opacity=".82" />
+          <path class="ring-line gold-ring-light draw-path" pathLength="1" style="--delay:2.2s; --duration:.72s" d="M 273 216 A 89 89 0 0 0 244 109" stroke-width=".72" opacity=".82" />
+        </g>
+
+        <g id="branchingLines" class="branching-lines" aria-hidden="true">
+          <path class="ring-line technical-line draw-path" pathLength="1" style="--delay:.89s; --duration:.53s" d="M 195.5 160 L 195.5 91" />
+          <path class="ring-line technical-line-light draw-path" pathLength="1" style="--delay:.93s; --duration:.53s" d="M 197.7 160 L 197.7 92" />
+          <path class="ring-line technical-line draw-path" pathLength="1" style="--delay:1.03s; --duration:.48s" d="M 186.5 170 L 164.5 146 L 164.5 124" />
+          <path class="ring-line technical-line-light draw-path" pathLength="1" style="--delay:1.07s; --duration:.48s" d="M 188 169 L 166 145 L 166 124" />
+          <path class="ring-line technical-line draw-path" pathLength="1" style="--delay:1.18s; --duration:.48s" d="M 203.5 170 L 223.5 149 L 223.5 122" />
+          <path class="ring-line technical-line-light draw-path" pathLength="1" style="--delay:1.22s; --duration:.48s" d="M 205 171 L 225 150 L 225 122" />
+          <path class="ring-line technical-line draw-path" pathLength="1" style="--delay:1.30s; --duration:.42s" d="M 184.5 186 L 164.5 166 L 158.5 156" />
+          <path class="ring-line technical-line draw-path" pathLength="1" style="--delay:1.39s; --duration:.42s" d="M 210.5 184 L 226.5 168 L 226.5 157" />
+        </g>
+
+        <g id="nodes" class="nodes" aria-hidden="true" filter="url(#studio-emboss)">
+          <g class="node-wrap" style="--delay:1.38s">
+            <circle class="node-dot" cx="195.5" cy="91" r="5.9" fill="var(--paper)" stroke="url(#luxury-gold)" stroke-width="1.95" />
+            <circle cx="195.5" cy="91" r="2.75" fill="var(--gold-light)" />
+            <circle class="node-light" cx="195.5" cy="91" r="13" fill="url(#node-halo)" style="--flicker-duration:3.2s; --flicker-delay:3.9s" />
+          </g>
+          <g class="node-wrap" style="--delay:1.52s">
+            <circle class="node-dot" cx="164.5" cy="124" r="5.7" fill="var(--paper)" stroke="var(--ink-soft)" stroke-width="1.85" />
+            <circle cx="164.5" cy="124" r="2.4" fill="var(--gold-light)" />
+            <circle class="node-light" cx="164.5" cy="124" r="12.5" fill="url(#node-halo)" style="--flicker-duration:4.1s; --flicker-delay:4.85s" />
+          </g>
+          <g class="node-wrap" style="--delay:1.67s">
+            <circle class="node-dot" cx="223.5" cy="122" r="5.7" fill="var(--paper)" stroke="var(--ink-soft)" stroke-width="1.85" />
+            <circle cx="223.5" cy="122" r="2.4" fill="var(--gold-light)" />
+            <circle class="node-light" cx="223.5" cy="122" r="12.5" fill="url(#node-halo)" style="--flicker-duration:2.8s; --flicker-delay:5.5s" />
+          </g>
+        </g>
+
+        <g id="pyramids" class="pyramids" aria-hidden="true" filter="url(#studio-emboss)">
+          <path fill="#15243b" d="M 112.5 250 L 149.5 202 L 186.5 250 Z" />
+          <path fill="#0a1424" d="M 146.5 250 L 195.5 165 L 253.5 250 Z" />
+          <path fill="#1d2e4a" d="M 232.5 250 L 251.5 204 L 289.5 250 Z" />
+          <path fill="#2c4263" opacity=".9" d="M 251.5 204 L 265.5 250 L 289.5 250 Z" />
+          <path class="pyramid-highlight gold" d="M 149.5 202 L 161.5 222 L 169.5 250 L 155.5 250 Z" />
+          <path class="pyramid-highlight gold" d="M 195.5 165 L 204.5 186 L 218.5 250 L 207.5 250 Z" />
+          <path class="pyramid-highlight gold-light" d="M 205.5 188 L 213.5 207 L 229.5 250 L 220.5 250 Z" opacity=".88" />
+          <path class="pyramid-edge" pathLength="1" d="M 195.5 165 L 253.5 250" />
+          <path class="pyramid-edge" pathLength="1" style="animation-delay:.66s, 5.2s" d="M 149.5 202 L 186.5 250" />
+        </g>
+
+        <g id="sandLayers" aria-hidden="true" filter="url(#studio-emboss)">
+          <path class="sand-layer ink" style="--delay:.52s" d="M 116.5 255 L 293.5 255 L 280.5 260 L 130.5 260 Z" />
+          <path class="sand-layer ink-soft" style="--delay:.65s" d="M 134.5 265 L 274.5 265 L 263.5 270 L 144.5 270 Z" />
+          <path class="sand-layer ink" style="--delay:.78s" d="M 156.5 276 L 248.5 276 L 234.5 281 L 171.5 281 Z" />
+          <path class="sand-layer ink-soft" style="--delay:.89s" d="M 174.5 286 C 190.5 289 232.5 289 248.5 286 C 234.5 294 190.5 294 174.5 286 Z" />
+          <path class="sand-layer gold" style="--delay:.71s" d="M 133.5 261 L 264.5 261 L 257.5 263 L 140.5 263 Z" opacity=".85" />
+        </g>
+      </svg>
+
+      <div class="esnaa-intro-word" id="esnaaIntroWord">
+        <svg viewBox="-4 -4 208 48" role="img" aria-hidden="true">
+          <g fill="none" stroke-width="4.5" stroke-linejoin="miter" stroke-linecap="butt">
+            <path d="M 0 0 L 25 0 M 0 20 L 15 20 M 0 40 L 50 40 A 10 10 0 0 0 50 20 A 10 10 0 0 1 50 0 L 65 0" stroke="#1d2e4a" />
+            <path d="M 80 40 L 80 0 L 110 40 L 110 0" stroke="url(#luxury-gold)" />
+            <path d="M 125 40 L 140 0 L 155 40" stroke="url(#luxury-gold)" />
+            <path d="M 170 40 L 185 0 L 200 40" stroke="url(#luxury-gold)" />
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="esnaa-intro-tagline" id="esnaaIntroTagline">
+      <span class="esnaa-intro-tagline__line"></span>
+      <span>YOU DREAM, WE BUILD</span>
+      <span class="esnaa-intro-tagline__line"></span>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="#work">الشغل</a></li>
+      <li><a href="#services">الخدمات</a></li>
+      <li><a href="#process">إزاي بنشتغل</a></li>
+      <li><a href="#faq-section">اسأل Esnaa</a></li>
+      <li><a href="#contact">تواصل معنا</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-accent">ابدأ مشروعك</a>
+  </div>
+
+  <main id="top">
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="hero">
+  <span class="hero-mark" id="heroMark" aria-hidden="true">
+    <svg viewBox="-4 -4 208 48" focusable="false">
+      <g fill="none" stroke="currentColor" stroke-width="4.5" stroke-linejoin="miter" stroke-linecap="butt">
+        <path d="M 0 0 L 25 0 M 0 20 L 15 20 M 0 40 L 50 40 A 10 10 0 0 0 50 20 A 10 10 0 0 1 50 0 L 65 0" />
+        <path d="M 80 40 L 80 0 L 110 40 L 110 0" />
+        <path d="M 125 40 L 140 0 L 155 40" />
+        <path d="M 170 40 L 185 0 L 200 40" />
+      </g>
+    </svg>
+  </span>
+  <div class="hero-inner">
+    <div class="eyebrow">استوديو ديجيتال لأصحاب البيزنسات والمشاريع المحلية</div>
+    <h1>إحنا بنصمم مواقع<br>تخلي بيزنسك<br><em>يفرق</em>.</h1>
+    <div class="hero-offerings" aria-label="تخصصات Esnaa">
+      <a class="hero-offering" href="#services"><span>01</span><strong>اتجاه بصري واضح</strong><small>هوية وتجربة تحكي حكاية بيزنسك</small></a>
+      <a class="hero-offering" href="#services"><span>02</span><strong>موقع له هدف</strong><small>رحلة أبسط من أول زيارة لحد التواصل</small></a>
+      <a class="hero-offering" href="#services"><span>03</span><strong>بناء جاهز للنمو</strong><small>أساس مرن يتوسع مع بيزنسك</small></a>
+    </div>
+    <div class="hero-sub">
+      <p>مواقع مودرن ومدروسة للمطاعم والكافيهات والعيادات والمحلات وأي بيزنس بينمو — مصممة عشان تحول الزوار لعملاء فعليين.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-primary">شوف شغلنا</a>
+        <a href="#contact" class="btn btn-ghost">ابدأ مشروعك</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="halo-ticker" aria-label="خدمات Esnaa">
+  <div class="halo-ticker__track">
+    <span class="halo-ticker__copy">استراتيجية <i>✳</i> تصميم <i>✳</i> تطوير <i>✳</i> مواقع تتباع وتتحب <i>✳</i> <strong>✦ عرض حصري لأول 10 عملاء</strong></span>
+    <span class="halo-ticker__copy" aria-hidden="true">استراتيجية <i>✳</i> تصميم <i>✳</i> تطوير <i>✳</i> مواقع تتباع وتتحب <i>✳</i> <strong>✦ عرض حصري لأول 10 عملاء</strong></span>
+  </div>
+</section>
+
+<!-- ============================================================
+     GLANCE — bento grid
+============================================================ -->
+<section class="section bento-section" id="glance">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Esnaa من الداخل</div>
+      <h2>الاستوديو في نظرة واحدة.</h2>
+      <p>مربعات صغيرة، كل واحد بيحكي جزء من الصورة.</p>
+    </div>
+
+    <div class="bento-grid reveal">
+      <div class="bento-tile bento-1">
+        <div class="bento-dots" aria-hidden="true"></div>
+        <div>
+          <div class="bento-num">+40</div>
+          <h3>مشروع اتنفذ لحد دلوقتي</h3>
+        </div>
+        <p>بيزنسات صغيرة ومشاريع ناشئة عدّت من عندنا لموقع بيمثلها صح — من المطاعم للعيادات للمتاجر.</p>
+      </div>
+
+      <div class="bento-tile bento-2">
+        <div class="bento-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3Z"/></svg>
+          لغتين
+        </div>
+        <h3>عربي / English — جاهزين RTL</h3>
+        <p>الموقع بيتصمم صح من أول يوم بلغتين، مش ترجمة مقلوبة على عجل.</p>
+      </div>
+
+      <div class="bento-tile bento-3">
+        <div class="bento-num">04</div>
+        <span class="bento-label">خطوات واضحة من البداية للإطلاق</span>
+      </div>
+
+      <div class="bento-tile bento-4" aria-hidden="true">
+        <div class="bento-chrome"><i></i><i></i><i></i></div>
+        <div class="bento-preview-body"></div>
+      </div>
+
+      <div class="bento-tile bento-5">
+        <div class="bento-eyebrow">وقت الرد</div>
+        <h3>يوم شغل واحد</h3>
+        <p>متوسط وقت الرد على أي رسالة أو استفسار بتوصلنا.</p>
+      </div>
+
+      <div class="bento-tile bento-6">
+        <div class="bento-quote-mark" aria-hidden="true">”</div>
+        <p>بيزنسك يستاهل يبان أونلاين بالشكل اللي يوازي جودته على أرض الواقع.</p>
+      </div>
+
+      <div class="bento-tile bento-7">
+        <h3>يلا نبدأ مشروعك</h3>
+        <a href="#contact" class="btn btn-accent">ابدأ دلوقتي
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SELECTED WORK
+============================================================ -->
+<section class="section" id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">شغلنا</div>
+      <h2>شوية حاجات عملناها.</h2>
+      <p>مرّر على المعاينة وهي هتتحرك زي ما لو كنت بتسكرول في الموقع الحقيقي.</p>
+    </div>
+
+    <div class="work-grid" id="workGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES
+============================================================ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">الخدمات</div>
+      <h2>اللي بنعمله، من غير تعقيد.</h2>
+      <p>من غير مصطلحات تقنية معقدة — بس النتيجة اللي بيزنسك محتاجها أونلاين.</p>
+    </div>
+    <div class="services-grid reveal" id="servicesGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BEFORE / AFTER
+============================================================ -->
+<section class="section ba-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">ليه ده مهم</div>
+      <h2>بيزنسك يستاهل حضور أونلاين أحسن.</h2>
+      <p>أغلب البيزنسات بتخسر عملاء قبل ما حد يدخل المحل — لأنه مفيش مكان واضح يشوف فيه حاجة.</p>
+    </div>
+    <div class="ba-grid reveal">
+      <div class="ba-col before">
+        <div class="ba-label">إنستجرام بس</div>
+        <ul>
+          <li>الساعات والعنوان مدفونين جوه البايو</li>
+          <li>مفيش منيو أو لستة أسعار واضحة</li>
+          <li>العميل يبعت رسالة ويستنى الرد</li>
+          <li>شكله زي أي بوست تاني في الفيد</li>
+        </ul>
+      </div>
+      <div class="ba-col after">
+        <div class="ba-label">مع موقع Esnaa</div>
+        <ul>
+          <li>خدماتك أو منيوك واضحين ومحدّثين دايمًا</li>
+          <li>اللوكيشن والمواعيد والتواصل في مكان واحد</li>
+          <li>تواصل واتساب أو مكالمة بضغطة واحدة، من غير استنى</li>
+          <li>موقع شكله بيوازي جودة بيزنسك</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESS
+============================================================ -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">إزاي بنشتغل</div>
+      <h2>أربع خطوات، من البداية لحد الإطلاق.</h2>
+    </div>
+    <div class="process-list reveal">
+      <div class="process-item">
+        <div class="process-num">01</div>
+        <h3>نتكلم</h3>
+        <p>احكيلنا عن بيزنسك وإيه اللي محتاجه.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">02</div>
+        <h3>التصميم</h3>
+        <p>بنحط الاتجاه البصري لموقعك.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">03</div>
+        <h3>التنفيذ</h3>
+        <p>بنحول التصميم لموقع شغال ومتجاوب.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">04</div>
+        <h3>الإطلاق</h3>
+        <p>موقعك بيبقى لايف.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRICING
+============================================================ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">الأسعار</div>
+      <h2>باقات على حسب حجم المشروع.</h2>
+      <p>السعر النهائي بيعتمد على مشروعك — دي الخطوط العريضة للي هيتضمنه. تواصل معانا للسعر بالظبط.</p>
+    </div>
+    <div class="pricing-grid reveal" id="pricingGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT / START A PROJECT
+============================================================ -->
+<section class="section" id="contact">
+  <div class="contact-section reveal">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="eyebrow" style="color:var(--accent);">ابدأ مشروعك</div>
+        <h2 style="margin-top:14px;">احكيلنا عن بيزنسك. إحنا هنكمل الباقي.</h2>
+        <p>املا شوية بيانات وهنرد عليك خلال يوم شغل واحد.</p>
+        <div class="contact-direct">
+          <a href="mailto:Esnaa3web@gmail.com" aria-label="راسلنا بالإيميل">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+            Esnaa3web@gmail.com
+          </a>
+          <a href="https://wa.me/201042862440" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 20l1-5.3A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+            تواصل معانا على واتساب
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-right">
+       <form id="leadForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="eaaf687b-1917-4ef5-9eb4-b6f82baed6d2">
+          <input type="checkbox" name="botcheck" class="form-botcheck" tabindex="-1" autocomplete="off">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="f-name">اسمك</label>
+              <input type="text" id="f-name" name="name" placeholder="مثال: أحمد محمد" maxlength="120" autocomplete="name" required>
+            </div>
+            <div class="form-field">
+              <label for="f-business">اسم البيزنس</label>
+              <input type="text" id="f-business" name="business" placeholder="مثال: كافيه الركن" maxlength="120" autocomplete="organization">
+            </div>
+            <div class="form-field">
+              <label for="f-email">الإيميل</label>
+              <input type="email" id="f-email" name="email" placeholder="you@business.com" maxlength="254" autocomplete="email" required>
+            </div>
+            <div class="form-field">
+              <label for="f-phone">رقم التليفون (اختياري)</label>
+              <input type="tel" id="f-phone" name="phone" placeholder="01xxxxxxxxx" maxlength="30" autocomplete="tel">
+            </div>
+            <div class="form-field">
+              <label for="f-type">نوع البيزنس</label>
+              <select id="f-type" name="type">
+                <option>مطعم / كافيه</option>
+                <option>عيادة / رعاية صحية</option>
+                <option>صالون / حلاق</option>
+                <option>محل / تجارة</option>
+                <option>مشروع ناشئ</option>
+                <option>تاني</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="f-budget">الميزانية التقريبية</label>
+              <select id="f-budget" name="budget">
+                <option>مش متأكد لسه</option>
+                <option>الباقة الأساسية</option>
+                <option>الباقة الاحترافية</option>
+                <option>مخصص / مش متأكد</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label for="f-message">تفاصيل المشروع</label>
+              <textarea id="f-message" name="message" rows="4" maxlength="3000" placeholder="عايز تبني إيه بالظبط؟"></textarea>
+            </div>
+          </div>
+          <div class="contact-form-foot">
+            <p class="form-note">من غير حساب ومن غير سبام — هنجهز لك رسالة إيميل بالتفاصيل لإرسالها.</p>
+            <button type="submit" class="btn btn-accent">ابعت تفاصيل المشروع
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </button>
+          </div>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <h3>تم إرسال رسالتك بنجاح.</h3>
+          <p>وصلتنا تفاصيل مشروعك، وهنراجعها ونتواصل معاك خلال يوم شغل واحد.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+  <section class="section faq-section" id="faq-section" aria-labelledby="faqSectionTitle">
+    <div class="container faq-section-inner reveal">
+      <div>
+        <div class="eyebrow">مساعد Esnaa</div>
+        <h2 id="faqSectionTitle">عندك سؤال قبل ما تبدأ؟</h2>
+        <p>اسأل المساعد عن الخدمات، الوقت، الأسعار، التحديثات، أو أي خطوة في مشروعك.</p>
+      </div>
+      <div class="faq-section-actions">
+        <div class="chat-topic-list" id="chatTopics" aria-label="أسئلة مقترحة"></div>
+        <button class="btn btn-accent" type="button" data-open-chat>ابدأ المحادثة</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-logo">ESNAA</div>
+        <div class="footer-links">
+          <div class="footer-col"><h5>الاستوديو</h5><a href="#work">الشغل</a><a href="#services">الخدمات</a><a href="#process">إزاي بنشتغل</a></div>
+          <div class="footer-col"><h5>تواصل</h5><a href="mailto:Esnaa3web@gmail.com">Esnaa3web@gmail.com</a><a href="https://wa.me/201042862440" target="_blank" rel="noopener">واتساب</a><a class="social-facebook" href="https://www.facebook.com/profile.php?id=61592988955678" target="_blank" rel="noopener">فيسبوك</a><a class="social-instagram" href="https://www.instagram.com/_esnaa_?igsi=MW8zMzFhdm5xbDJmeg%3D%3D&utm_source=qr" target="_blank" rel="noopener">إنستجرام</a></div>
+          <div class="footer-col"><h5>مكاننا</h5><span>شغالين من مصر — لعملاء في كل مكان</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year"></span> ESNAA. جميع الحقوق محفوظة.</span><span>تصميم وتنفيذ ESNAA.</span></div>
+    </div>
+  </footer>
+
+  <button class="faq-fab" id="faqFab" type="button" aria-label="افتح محادثة مساعد Esnaa" aria-expanded="false" aria-controls="faqPanel">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 20l1-5.3A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg>
+  </button>
+  <section class="faq-panel chat-panel" id="faqPanel" role="dialog" aria-label="محادثة مع مساعد Esnaa" aria-hidden="true">
+    <div class="faq-head chat-head"><span class="chat-avatar" aria-hidden="true">E</span><div><div class="chat-presence"><span></span> متاح الآن</div><h4>مساعد Esnaa</h4></div></div>
+    <div class="faq-body chat-body" id="faqBody"><div class="chat-thread" id="chatThread" aria-live="polite" aria-relevant="additions"></div></div>
+    <form class="chat-composer" id="chatComposer">
+      <label class="sr-only" for="chatInput">اكتب سؤالك</label>
+      <input id="chatInput" name="question" type="text" autocomplete="off" maxlength="220" placeholder="اكتب سؤالك هنا…">
+      <button type="submit" aria-label="إرسال السؤال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 14-7-4 14-3-5-7-2Z"/><path d="m12 14 3-3"/></svg></button>
+    </form>
+    <div class="faq-foot"><a href="#contact" id="faqFootLink">محتاج مساعدة شخصية؟ ابدأ مشروعك ←</a></div>
+  </section>
+
+  <template id="preview-noir">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:Georgia,'Times New Roman',serif;background:#0e0d0b;color:#efe7d8;}
+  .nav{display:flex;justify-content:space-between;padding:26px 34px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid rgba(239,231,216,.12);}
+  .hero{padding:90px 34px 70px;}
+  .hero span{font-size:11px;letter-spacing:.3em;color:#c9a15a;text-transform:uppercase;}
+  .hero h1{font-size:64px;font-weight:400;margin-top:18px;line-height:1.05;}
+  .hero p{margin-top:22px;max-width:420px;color:rgba(239,231,216,.65);font-size:15px;line-height:1.7;}
+  .section{padding:70px 34px;border-top:1px solid rgba(239,231,216,.12);}
+  .section h2{font-size:13px;letter-spacing:.25em;text-transform:uppercase;color:#c9a15a;margin-bottom:34px;}
+  .menu-row{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px dashed rgba(239,231,216,.15);font-size:16px;}
+  .menu-row span:last-child{color:#c9a15a;}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;}
+  .card{height:220px;background:linear-gradient(160deg,#1c1913,#0e0d0b);border:1px solid rgba(239,231,216,.1);border-radius:4px;}
+  .cta{padding:100px 34px;text-align:center;}
+  .cta h2{font-size:34px;font-weight:400;}
+  .btn{display:inline-block;margin-top:26px;padding:14px 30px;border:1px solid #c9a15a;color:#c9a15a;letter-spacing:.15em;font-size:11px;text-transform:uppercase;}
+  .foot{padding:50px 34px;font-size:12px;color:rgba(239,231,216,.4);border-top:1px solid rgba(239,231,216,.12);}
+</style>
+<div class="nav"><span>Noir</span><span>Menu · Reservations · Contact</span></div>
+<div class="hero"><span>Est. downtown</span><h1>An evening<br>worth staying for.</h1><p>Modern tasting menus and natural wine, seven nights a week. Reservations recommended.</p></div>
+<div class="section"><h2>From the menu</h2>
+  <div class="menu-row"><span>Charred octopus, XO butter</span><span>$24</span></div>
+  <div class="menu-row"><span>Duck breast, cherry, chicory</span><span>$36</span></div>
+  <div class="menu-row"><span>Burnt honey panna cotta</span><span>$14</span></div>
+</div>
+<div class="section"><h2>The room</h2><div class="cards"><div class="card"></div><div class="card"></div></div></div>
+<div class="cta"><h2>Reserve your table</h2><div class="btn">Book now</div></div>
+<div class="foot">Noir — 214 Ashford St · Open Tue–Sun, 5pm–late</div>
+</template>
+
+<template id="preview-nexora">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',Inter,sans-serif;background:#f4f5f8;color:#161821;}
+  .shell{display:flex;min-height:100%;}
+  .side{width:200px;background:#161821;color:#fff;padding:26px 18px;flex:none;}
+  .side .logo{font-weight:700;font-size:15px;margin-bottom:34px;}
+  .side a{display:block;padding:11px 10px;font-size:13px;border-radius:8px;color:rgba(255,255,255,.65);margin-bottom:4px;}
+  .side a.active{background:rgba(255,255,255,.08);color:#fff;}
+  .main{flex:1;padding:30px 34px;}
+  .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px;}
+  .topbar h1{font-size:20px;}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px;}
+  .stat{background:#fff;border-radius:12px;padding:20px;border:1px solid #e6e7ee;}
+  .stat span{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#8a8d9c;}
+  .stat h2{font-size:26px;margin-top:8px;}
+  .panel{background:#fff;border-radius:12px;border:1px solid #e6e7ee;padding:22px;margin-bottom:20px;}
+  .panel h3{font-size:14px;margin-bottom:18px;}
+  .bars{display:flex;align-items:flex-end;gap:10px;height:140px;}
+  .bars div{flex:1;background:linear-gradient(180deg,#3140E8,#7b85f2);border-radius:4px 4px 0 0;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;color:#8a8d9c;font-weight:500;padding-bottom:10px;font-size:11px;text-transform:uppercase;}
+  td{padding:11px 0;border-top:1px solid #eef;}
+  .tag{background:#e9eaf9;color:#3140E8;padding:3px 9px;border-radius:100px;font-size:11px;}
+</style>
+<div class="shell">
+  <div class="side"><div class="logo">NEXORA</div>
+    <a class="active">Overview</a><a>Orders</a><a>Inventory</a><a>Customers</a><a>Reports</a><a>Settings</a>
+  </div>
+  <div class="main">
+    <div class="topbar"><h1>Overview</h1><span style="font-size:12px;color:#8a8d9c;">Today, 9:41 AM</span></div>
+    <div class="stat-row">
+      <div class="stat"><span>Revenue</span><h2>$18,420</h2></div>
+      <div class="stat"><span>Orders</span><h2>312</h2></div>
+      <div class="stat"><span>Active staff</span><h2>14</h2></div>
+    </div>
+    <div class="panel"><h3>Weekly performance</h3>
+      <div class="bars"><div style="height:40%"></div><div style="height:60%"></div><div style="height:35%"></div><div style="height:80%"></div><div style="height:55%"></div><div style="height:90%"></div><div style="height:70%"></div></div>
+    </div>
+    <div class="panel"><h3>Recent orders</h3>
+      <table><tr><th>Order</th><th>Customer</th><th>Status</th><th>Total</th></tr>
+      <tr><td>#8823</td><td>M. Reyes</td><td><span class="tag">Fulfilled</span></td><td>$212</td></tr>
+      <tr><td>#8822</td><td>A. Chen</td><td><span class="tag">Processing</span></td><td>$88</td></tr>
+      <tr><td>#8821</td><td>J. Novak</td><td><span class="tag">Fulfilled</span></td><td>$540</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="preview-mediaguard">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',Inter,sans-serif;background:#0e0f13;color:#e7e8ee;}
+  .top{display:flex;justify-content:space-between;align-items:center;padding:22px 32px;border-bottom:1px solid #1e2029;}
+  .top .logo{font-weight:700;letter-spacing:.02em;}
+  .top .logo span{color:#6f7bff;}
+  .main{padding:30px 32px;}
+  .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;}
+  .head h1{font-size:19px;}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;}
+  .kpi{background:#15161d;border:1px solid #1e2029;border-radius:10px;padding:16px;}
+  .kpi span{font-size:11px;color:#7c7f92;text-transform:uppercase;}
+  .kpi h2{font-size:22px;margin-top:8px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#15161d;border:1px solid #1e2029;border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:12px 16px;background:#1a1b23;color:#8b8ea1;font-size:11px;text-transform:uppercase;font-weight:500;}
+  td{padding:13px 16px;border-top:1px solid #1e2029;}
+  .badge{padding:3px 10px;border-radius:100px;font-size:11px;}
+  .b-active{background:rgba(97,214,146,.15);color:#61d692;}
+  .b-expiring{background:rgba(255,183,77,.15);color:#ffb74d;}
+  .b-restricted{background:rgba(255,99,99,.15);color:#ff6363;}
+</style>
+<div class="top"><div class="logo">Media<span>Guard</span></div><div style="font-size:12px;color:#7c7f92;">Rights Dashboard</div></div>
+<div class="main">
+  <div class="head"><h1>Asset licenses</h1></div>
+  <div class="grid">
+    <div class="kpi"><span>Total assets</span><h2>4,812</h2></div>
+    <div class="kpi"><span>Active licenses</span><h2>3,940</h2></div>
+    <div class="kpi"><span>Expiring soon</span><h2>126</h2></div>
+    <div class="kpi"><span>Restricted</span><h2>38</h2></div>
+  </div>
+  <table>
+    <tr><th>Asset</th><th>Territory</th><th>Expires</th><th>Status</th></tr>
+    <tr><td>Campaign_Reel_04.mp4</td><td>US, CA</td><td>Nov 2026</td><td><span class="badge b-active">Active</span></td></tr>
+    <tr><td>Brand_Photo_Set_A</td><td>Global</td><td>Sep 2026</td><td><span class="badge b-expiring">Expiring</span></td></tr>
+    <tr><td>Interview_Master.mov</td><td>EU</td><td>—</td><td><span class="badge b-restricted">Restricted</span></td></tr>
+    <tr><td>Product_B_Roll</td><td>US</td><td>Jan 2027</td><td><span class="badge b-active">Active</span></td></tr>
+  </table>
+</div>
+</template>
+  <script src="js/i18n/ar.js"></script>
+  <script src="js/i18n/en.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/render.js"></script>
+<script src="js/api-config.js"></script>
+<script src="js/faq-chat.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/language.js"></script>
+<script src="js/halo.js"></script>
+<script src="js/logo.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
